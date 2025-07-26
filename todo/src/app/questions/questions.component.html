@@ -1,0 +1,94 @@
+<div class="container mt-4" *ngIf="question">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Quiz Questions</h2>
+
+        <div class="d-flex">
+            <select class="form-select me-2" [(ngModel)]="selectedCategory">
+                <option value="">All Categories</option>
+                <option *ngFor="let category of categories" [value]="category">
+                    {{ category }}
+                </option>
+            </select>
+
+            <button class="btn btn-primary" (click)="filter()">Filter</button>
+        </div>
+    </div>
+
+    <div *ngFor="let category of groupedQuestions | keyvalue">
+        <div class="card bg-primary text-white mb-3">
+            <div class="card-body">
+                <h3 class="card-title">{{ category.key }}</h3>
+            </div>
+        </div>
+
+        <div *ngFor="let question of category.value" class="card mb-3 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">{{ question.questionTitle }}</h5>
+
+                <ul class="list-group">
+                    <li class="list-group-item">{{ question.option1 }}</li>
+                    <li class="list-group-item">{{ question.option2 }}</li>
+                    <li class="list-group-item">{{ question.option3 }}</li>
+                    <li class="list-group-item">{{ question.option4 }}</li>
+                    <li style="background-color: green;" class="list-group-item">{{ question.rightAnswer }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center mt-4">
+        <button class="btn btn-success btn-lg" (click)="continuebtn()">Continue</button>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center align-items-center vh-100" *ngIf="continue">
+    <div class="p-4 bg-white shadow-lg rounded text-center" style="width: 400px;">
+        <h2 class="mb-4">Create Your Quiz</h2>
+
+        <!-- Title of the Quiz -->
+        <div class="mb-3">
+            <label for="quizTitle" class="form-label fw-bold">Title of the Quiz</label>
+            <input type="text" id="quizTitle" class="form-control" [(ngModel)]="quizTitle"
+                placeholder="Enter quiz title">
+        </div>
+
+        <!-- Select Category -->
+        <div class="mb-3">
+            <label for="categorySelect" class="form-label fw-bold">Select Category</label>
+            <select id="categorySelect" class="form-select" [(ngModel)]="selectedCategory">
+                <option value="">All Categories</option>
+                <option *ngFor="let category of categories" [value]="category">
+                    {{ category }}
+                </option>
+            </select>
+        </div>
+
+        <!-- Number of Questions -->
+        <div class="mb-3">
+            <label for="numQuestions" class="form-label fw-bold">Number of Questions</label>
+            <input type="number" id="numQuestions" class="form-control" [(ngModel)]="numQuestions"
+                placeholder="Enter number of questions">
+        </div>
+
+        <!-- Create Quiz Button -->
+        <button class="btn btn-primary btn-lg w-100" (click)="createQuiz()">Create Quiz</button>
+    </div>
+</div>
+
+<!-- Dim Background When Toast is Visible -->
+<div class="overlay" *ngIf="quizCreated"></div>
+
+<!-- Toast Notification -->
+<!-- Toast Notification -->
+<div class="toast-container position-fixed top-50 start-50 translate-middle" *ngIf="quizCreated">
+    <div class="toast show custom-toast p-4 rounded-4 shadow-lg" role="alert">
+        <div class="toast-header">
+            <strong class="me-auto">✅ Success</strong>
+            <button type="button" class="btn-close" (click)="quizDone()"></button>
+        </div>
+        <div class="toast-body text-center fw-bold">
+             Quiz Created Successfully! 
+        </div>
+    </div>
+</div>
+

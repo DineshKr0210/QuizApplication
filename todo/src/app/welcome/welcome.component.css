@@ -1,0 +1,73 @@
+/* Fullscreen background container */
+.quiz-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Background with multiple quiz and tech images blended */
+.quiz-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), 
+              url('https://wallpapers.com/images/hd/quiz-wallpaper-4k-e3v3rs8vqbt06fkl.jpg'), /* Quiz Background */
+              url('https://cdn.wallpapersafari.com/59/96/qpgXjd.jpg'), /* Tech Mind */
+              url('https://img.freepik.com/free-vector/abstract-digital-technology-background_23-2148829200.jpg'), /* Digital Tech */
+              url('https://img.freepik.com/premium-photo/futuristic-artificial-intelligence-head-with-glowing-brain-technology-background_372999-14400.jpg'); /* AI */
+  background-size: cover, 30%, 25%, 30%;
+  background-position: center, top left, top right, bottom left;
+  background-repeat: no-repeat;
+  filter: brightness(50%) blur(1px); /* Darkens images and adds slight blur */
+  z-index: -1;
+}
+
+/* Overlay for smoother blending */
+.quiz-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Dark semi-transparent overlay */
+  z-index: -1;
+}
+
+/* Stylish Heading */
+h1 {
+  font-size: 3.5rem;
+  font-weight: bold;
+  text-shadow: 4px 4px 15px rgba(0, 0, 0, 0.8);
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+/* Stylish Start Button */
+.start-btn {
+  font-size: 1.5rem;
+  padding: 15px 35px;
+  border-radius: 12px;
+  background: linear-gradient(45deg, #ff9800, #ff5722);
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.start-btn:hover {
+  background: linear-gradient(45deg, #ff5722, #ff9800);
+  transform: scale(1.1);
+}

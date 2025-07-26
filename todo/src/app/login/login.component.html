@@ -1,0 +1,21 @@
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card shadow-lg p-4" style="width: 350px;">
+      <h2 class="text-center mb-3 fw-bold">Login</h2>
+  
+      <small *ngIf="invalid" class="text-danger d-block text-center">{{errMsg}}</small>
+  
+      <div class="mb-3">
+        <label for="username" class="form-label">User Name</label>
+        <input type="text" id="username" name="username" [(ngModel)]="userName" 
+          class="form-control" placeholder="Enter your username">
+      </div>
+  
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" id="password" name="password" [(ngModel)]="password" 
+          class="form-control" placeholder="Enter your password">
+      </div>
+  
+      <button (click)="handle()" class="btn btn-primary w-100">Login</button>
+    </div>
+  </div>

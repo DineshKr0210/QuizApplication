@@ -1,0 +1,41 @@
+<div class="container mt-5">
+    <h2 class="text-white text-center mb-4">{{message}}</h2>
+  
+    <div class="d-flex justify-content-center">
+      <div class="w-50">
+        <!-- Dropdown for quiz titles -->
+        <label for="quizSelect" class="form-label text-white fw-bold">Choose a Quiz:</label>
+        <select id="quizSelect" class="form-select shadow-lg" [(ngModel)]="id">
+          <option value="" disabled selected>Select a Quiz</option>
+          <option *ngFor="let quiz of titles" [value]="quiz.id" >
+            {{ quiz.title }}
+          </option>
+        </select>
+      </div>
+    </div>
+  
+    <!-- Start Quiz Button -->
+    <div class="d-flex justify-content-center mt-4">
+      <button class="btn btn-warning btn-lg shadow-lg fw-bold px-5 animate-btn" [disabled]="!id" (click)="startQuiz()">
+        Start Quiz
+      </button>
+    </div>
+  </div>
+  
+  <!-- Add some background and styles -->
+  <style>
+    body {
+      background: linear-gradient(to right, #1e3c72, #2a5298);
+      min-height: 100vh;
+    }
+  
+    .animate-btn {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+  
+    .animate-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0px 4px 15px rgba(255, 255, 0, 0.5);
+    }
+    
+  </style>

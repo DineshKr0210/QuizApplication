@@ -1,0 +1,47 @@
+<div class="container mt-4" *ngIf="questions.length > 0 && !quizSubmitted"  >
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Quiz Questions</h2>
+    </div>
+
+    <div *ngFor="let question of questions" class="card mb-3 shadow-sm">
+        <div class="card-body">
+            <h5 class="card-title">{{ question.question }}</h5>
+
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <input type="radio" [name]="'question' + question.id" [value]="question.option1"
+                        (change)="selectAnswer(question.id, question.option1)"> {{ question.option1 }}
+                </li>
+                <li class="list-group-item">
+                    <input type="radio" [name]="'question' + question.id" [value]="question.option2"
+                        (change)="selectAnswer(question.id, question.option2)"> {{ question.option2 }}
+                </li>
+                <li class="list-group-item">
+                    <input type="radio" [name]="'question' + question.id" [value]="question.option3"
+                        (change)="selectAnswer(question.id, question.option3)"> {{ question.option3 }}
+                </li>
+                <li class="list-group-item">
+                    <input type="radio" [name]="'question' + question.id" [value]="question.option4"
+                        (change)="selectAnswer(question.id, question.option4)"> {{ question.option4 }}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center mt-4">
+        <button class="btn btn-success btn-lg" (click)="submitQuiz()">Submit Quiz</button>
+    </div>
+</div>
+
+<!-- No Questions Message -->
+<div class="text-center text-danger mt-5" *ngIf="questions.length === 0">
+    <h4>No Questions Available</h4>
+</div>
+
+<!-- Quiz Submitted Message -->
+<div class="text-center mt-5" *ngIf="quizSubmitted">
+    <div class="alert alert-success shadow-lg p-4">
+        <h3>🎉 Quiz Submitted Successfully! 🎉</h3>
+        <p class="fw-bold">Your Score: <span class="text-primary">{{ correctAnswers }}</span></p>
+    </div>
+</div>
